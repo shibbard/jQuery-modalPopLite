@@ -1,7 +1,7 @@
 ﻿.modalPopLite-mask
 {
   position:fixed;
-  z-index:9000;
+  z-index:9994;
   background-color:#000;
   display:none;
   top:0px;
@@ -11,7 +11,7 @@
 .modalPopLite-wrapper
 {
     position:fixed;
-    z-index:9999;
+    z-index:9995;
     /*display:none;*/
     /*left:-10000px;*/
     -webkit-border-radius: .5em; 
@@ -20,8 +20,7 @@
 	-webkit-box-shadow: 0 0px 25px rgba(0,0,0,.9);
 	-moz-box-shadow: 0 0px 25px rgba(0,0,0,.9);
 	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);    
-    border: 5px solid rgb(000, 0, 0);
-    border: 5px solid rgba(000, 0, 0, .5);
+    border: 5px solid #335805;
     
 }
 
