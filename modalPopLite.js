@@ -33,7 +33,7 @@
 (function ($) {
     var popID = 0;
     $.fn.modalPopLite = function (options) {
-        var options = $.extend({}, { openButton: "modalPopLite-open-btn", closeButton: "modalPopLite-close-btn", isModal: false, callBack: null }, options);
+        var options = $.extend({}, { openButton: "modalPopLite-open-btn", closeButton: "modalPopLite-close-btn", isModal: false, onOpen: null, callBack: null }, options);
 
         return this.each(function () {
             popID++;
@@ -65,6 +65,9 @@
                 $('#modalPopLite-wrapper' + thisPopID).css({ 'left': left + "px", 'top': top });
                 $('#modalPopLite-wrapper' + thisPopID).fadeIn('slow');
                 isOpen = true;
+		if (options.onOpen != null) {
+		    options.onOpen.call(this);
+		}
             });
 
             $(closeObj).live("click", function (e) {
