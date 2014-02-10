@@ -25,9 +25,9 @@
 */
 
 /*
-* Version: V1.3.1
-* Release: 19-07-2012
-* Based on jQuery 1.7.2
+* Version: V1.3.2
+* Release: 10-01-2013
+* Based on jQuery from 1.7 to 1.11.0 / 2.1.0
 */
 
 (function ($) {
@@ -40,17 +40,17 @@
             var thisPopID = popID;
             var isOpen = false;
 
-            obj = $(this);
-            triggerObj = options.openButton;
-            closeObj = options.closeButton;
-            isReallyModel = options.isModal;
+            var obj = $(this);
+            var triggerObj = options.openButton;
+            var closeObj = options.closeButton;
+            var isReallyModel = options.isModal;
 
             //alert("winH: " + winH + "top: " + top + "objH: " + objH);
             obj.before('<div id="modalPopLite-mask' + thisPopID + '" style="width:100%" class="modalPopLite-mask" />');
             obj.wrap('<div id="modalPopLite-wrapper' + thisPopID + '" style="left: -10000px;" class="modalPopLite-wrapper" />');
             obj.addClass('modalPopLite-child-' + thisPopID);
 
-            $(triggerObj).live("click", function (e) {
+            $(triggerObj).on("click", function (e) {
                 e.preventDefault();
                 var winW = $(window).width();
                 var winH = $(window).height();
@@ -67,7 +67,7 @@
                 isOpen = true;
             });
 
-            $(closeObj).live("click", function (e) {
+            $(closeObj).on("click", function (e) {
                 e.preventDefault();
                 $('#modalPopLite-mask' + thisPopID).hide();
                 //$('#modalPopLite-wrapper' + thisPopID).hide();
@@ -100,6 +100,7 @@
                     var left = (winW / 2) - (objW / 2);
                     var top = (winH / 2) - (objH / 2);
                     $('#modalPopLite-wrapper' + thisPopID).css({ 'left': left + "px", 'top': top });
+                    $('#modalPopLite-mask' + thisPopID).css('height', winH + "px");
                 }
             });
         });
