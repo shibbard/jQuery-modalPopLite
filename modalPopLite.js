@@ -140,7 +140,6 @@
             //if mask is clicked
             if (!isReallyModel) {
                 $(modalPopLite_mask + thisPopID).click(function (e) {
-                    debugger;
                     e.preventDefault();
                     $(this).hide();
                     closePopLiteModal();
