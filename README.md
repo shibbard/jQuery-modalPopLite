@@ -41,3 +41,15 @@ Step 2: Create the page with an element to click and open the popup and a close 
 	<div id="clicker">Click Me!</div>
 	<div id="popup-wrapper" style="background-color: #ccc;">I am a popup box. Content can be anything.
 	<a id="close-btn" href="#">Close</a></div>
+
+Step 3: Attach the popup to a container on the page.
+----------------------------------------------------
+
+	<script type="text/javascript">
+		$(function () {
+			$('#popup-wrapper').modalPopLite({
+				openButton: '#clicker',
+				closeButton: '#close-btn'
+			});
+		});
+	</script>
