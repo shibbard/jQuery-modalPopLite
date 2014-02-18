@@ -50,13 +50,13 @@
                 isOpen = false,
 
                 obj = $(this),
-                triggerObj = options.openButton,
+                openObj = options.openButton,
                 closeObj = options.closeButton,
                 isReallyModel = options.isModal,
                 openCallback = options.openCallback,
                 closeCallback = options.closeCallback,
 
-                resizeWindow = function () {
+                resizeBox = function () {
                     var winW = $(window).width(),
                         winH = $(window).height(),
                         objW = $('.modalPopLite-child-' + thisPopID).outerWidth(),
@@ -68,7 +68,7 @@
                     $(modalPopLite_mask + thisPopID).css('height', winH + "px");
                 },
                 openPopLiteModal = function () {
-                    resizeWindow();
+                    resizeBox();
                     $(modalPopLite_mask + thisPopID).fadeTo('slow', 0.6);
                     $(modalPopLite_wrapper + thisPopID).fadeIn('slow');
                     isOpen = true;
@@ -93,15 +93,15 @@
             obj.addClass('modalPopLite-child-' + thisPopID);
 
             // Check if we have array of open buttons
-            if ($.isArray(triggerObj)) {
-                for (var i = 0, len = triggerObj.length; i < len; i++) {
-                    triggerObj[i].on("click", function (e) {
+            if ($.isArray(openObj)) {
+                for (var i = 0, len = openObj.length; i < len; i++) {
+                    $(openObj[i]).on("click", function (e) {
                         e.preventDefault();
                         openPopLiteModal();
                     });
                 }
             } else {
-                $(triggerObj).on("click", function (e) {
+                $(openObj).on("click", function (e) {
                     e.preventDefault();
                     openPopLiteModal();
                 });
@@ -109,8 +109,8 @@
 
             // Check if we have array of close buttons
             if ($.isArray(closeObj)) {
-                for (var i = 0, len = closeObj.length; i < len; i++) {
-                    closeObj[i].on("click", function (e) {
+                for (var v = 0, closeLen = closeObj.length; v < closeLen; v++) {
+                    $(closeObj[v]).on("click", function (e) {
                         e.preventDefault();
                         closePopLiteModal();
                     });
@@ -134,7 +134,7 @@
 
             obj.bind('closePopLiteModal', function () {
                 closePopLiteModal();
-            })
+            });
 
 
             //if mask is clicked
@@ -147,7 +147,7 @@
             }
             $(window).resize(function () {
                 if (isOpen) {
-                    resizeWindow();
+                    resizeBox();
                 }
             });
         });
