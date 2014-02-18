@@ -74,7 +74,7 @@
                     isOpen = true;
 
                     if (typeof openCallback === 'function') {
-                        openCallback();
+                        openCallback.call(this);
                     }
                 },
                 closePopLiteModal = function () {
@@ -84,7 +84,7 @@
                     isOpen = false;
 
                     if (typeof closeCallback === 'function') {
-                        closeCallback();
+                        closeCallback.call(this);
                     }
                 };
 
