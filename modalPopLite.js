@@ -25,8 +25,8 @@
 */
 
 /*
-* Version: V1.3.2
-* Release: 10-01-2013
+* Version: V1.4
+* Release: 20-02-2014
 * Based on jQuery from 1.7 to 1.11.0 / 2.1.0
 */
 
