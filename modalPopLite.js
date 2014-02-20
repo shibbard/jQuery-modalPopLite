@@ -1,7 +1,7 @@
 ﻿/*
 * jQuery modalPopLite
 * Copyright (c) 2012 Simon Hibbard
-* 
+*
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
 * files (the "Software"), to deal in the Software without
@@ -13,7 +13,7 @@
 
 * The above copyright notice and this permission notice shall be
 * included in all copies or substantial portions of the Software.
-* 
+*
 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
 * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -21,7 +21,7 @@
 * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-* OTHER DEALINGS IN THE SOFTWARE. 
+* OTHER DEALINGS IN THE SOFTWARE.
 */
 
 /*
@@ -67,25 +67,31 @@
                     $(modalPopLite_wrapper + thisPopID).css({ 'left': left + "px", 'top': top });
                     $(modalPopLite_mask + thisPopID).css('height', winH + "px");
                 },
-                openPopLiteModal = function () {
-                    resizeBox();
-                    $(modalPopLite_mask + thisPopID).fadeTo('slow', 0.6);
-                    $(modalPopLite_wrapper + thisPopID).fadeIn('slow');
-                    isOpen = true;
+                openPopLiteModal = function (btn) {
+                    $(document).on("click", btn, function (e) {
+                        e.preventDefault();
+                        resizeBox();
+                        $(modalPopLite_mask + thisPopID).fadeTo('slow', 0.6);
+                        $(modalPopLite_wrapper + thisPopID).fadeIn('slow');
+                        isOpen = true;
 
-                    if (typeof openCallback === 'function') {
-                        openCallback.call(this);
-                    }
+                        if (typeof openCallback === 'function') {
+                            openCallback.call(this);
+                        }
+                    });
                 },
-                closePopLiteModal = function () {
-                    $(modalPopLite_mask + thisPopID).hide();
-                    $(modalPopLite_wrapper + thisPopID).css('left', "-10000px");
+                closePopLiteModal = function (btn) {
+                    $(document).on("click", btn, function (e) {
+                        e.preventDefault();
+                        $(modalPopLite_mask + thisPopID).hide();
+                        $(modalPopLite_wrapper + thisPopID).css('left', "-10000px");
 
-                    isOpen = false;
+                        isOpen = false;
 
-                    if (typeof closeCallback === 'function') {
-                        closeCallback.call(this);
-                    }
+                        if (typeof closeCallback === 'function') {
+                            closeCallback.call(this);
+                        }
+                    });
                 };
 
             obj.before('<div id="modalPopLite-mask' + thisPopID + '" style="width:100%" class="modalPopLite-mask" />');
@@ -95,31 +101,19 @@
             // Check if we have array of open buttons
             if ($.isArray(openObj)) {
                 for (var i = 0, len = openObj.length; i < len; i++) {
-                    $(openObj[i]).on("click", function (e) {
-                        e.preventDefault();
-                        openPopLiteModal();
-                    });
+                    openPopLiteModal(openObj[i]);
                 }
             } else {
-                $(openObj).on("click", function (e) {
-                    e.preventDefault();
-                    openPopLiteModal();
-                });
+                openPopLiteModal(openObj);
             }
 
             // Check if we have array of close buttons
             if ($.isArray(closeObj)) {
                 for (var v = 0, closeLen = closeObj.length; v < closeLen; v++) {
-                    $(closeObj[v]).on("click", function (e) {
-                        e.preventDefault();
-                        closePopLiteModal();
-                    });
+                    closePopLiteModal(closeObj[v]);
                 }
             } else {
-                $(closeObj).on("click", function (e) {
-                    e.preventDefault();
-                    closePopLiteModal();
-                });
+                closePopLiteModal(closeObj);
             }
 
             // Bind an event listener on object to trigger open without need to
